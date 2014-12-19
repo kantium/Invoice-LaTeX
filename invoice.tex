@@ -1,0 +1,228 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+%Author : Stéphane Küng
+%Version : 1.0
+
+\documentclass[a4paper,12pt]{letter}
+
+%Usepackage
+\usepackage{wallpaper}
+\usepackage{fontspec}
+\usepackage[absolute]{textpos}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1cm]{geometry}
+\usepackage[french]{./packages/invoice}
+\usepackage{hyperref}
+\usepackage[ddmmyyyy]{datetime}
+\renewcommand{\dateseparator}{.}
+\usepackage{advdate}
+
+%This is juste for having blue link in emails
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={My title},    % title
+    pdfauthor={Author},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfcreator={Creator},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={keyword1} {key2} {key3}, % list of keywords
+    pdfnewwindow=true,      % links in new PDF window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links (change box color with linkbordercolor)
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+%Set Fonts (Calibri and OCR-B)
+\newfontfamily\myfont[Path = fonts/]{OCR-B}
+\newfontfamily\mymainfont[Path = fonts/,ItalicFont = *-Italic,BoldFont = *-Bold]{Calibri}
+\newenvironment{calibri}{\mymainfont}{}
+\newenvironment{ocr}{\myfont}{}
+
+%Remove number on first page
+\pagenumbering{gobble}
+
+%Select here the background you want (Red BV or Orange BVR)
+%\ULCornerWallPaper{1}{templates/303_bank.pdf}
+%\ULCornerWallPaper{1}{templates/303_post.pdf}
+%\ULCornerWallPaper{1}{templates/609_post.pdf}
+\ULCornerWallPaper{1}{templates/609_bank.pdf}
+
+%Put details about your invoice here
+\newcommand{\thedate}{\today}
+\newcommand{\thefinaldate}{\DayAfter[30]}
+\newcommand\account{01-456-7}
+\newcommand\francs{168}
+\newcommand\cents{95}
+\newcommand\clientid{MK-5646}
+\newcommand\invoiceid{23-14}
+\newcommand\currencycode{CHF}
+\newcommand\wirereceiver{UBS AG\\8001 Zürich}
+\newcommand\wirefor{Mike Kruger\\Glennerstrasse 120\\6142 Gettnau}
+\newcommand\mycompanyname{Mike Kruger\\Glennerstrasse 120\\6142 Gettnau\\\href{mailto:mike.kruger@gmail.com}{mike.kruger@gmail.com}\\Tel : 079 456 78 90}
+\newcommand\clientname{Stéphane Küng\\Av. de la Gare 2\\1208 Genève\\Tel : 079 123 44 55\\}
+\newcommand\wirefrom{Stéphane Küng\\Av. de la Gare 2\\1208 Genève\\}
+\newcommand\refno{00 78546 45211 05470 07931 12380}
+\newcommand\refcode{01000000168954>007854645211054700793112380+ 010004567>}
+\newcommand\communication{}
+
+
+\begin{document}
+\begin{calibri}
+{\huge Facture}
+
+%From Field
+\begin{textblock}{12.6}(0.8,1.3)
+\raggedright
+{\small \mycompanyname}
+\end{textblock}
+
+%To Field
+\begin{textblock}{12.6}(10,3)
+\raggedright
+{\large \clientname}
+\end{textblock}
+
+%Informations Field
+\begin{textblock}{4}(10,1.3)
+\raggedright
+{\small 
+Date :  \\
+Client : \\
+Facture : \\
+Montant : \\
+Payable jusqu'au :
+}
+\end{textblock}
+
+%Informations Values Field
+\begin{textblock}{4}(10,1.3)
+\raggedleft
+{\small 
+\textbf{\thedate}\\
+\textbf{\clientid}\\
+\textbf{\invoiceid}\\
+\textbf{\currencycode\ \francs.\cents}\\
+\textbf{\thefinaldate}}
+\end{textblock}
+
+%Invoice Part
+\begin{textblock}{12.6}(1.7,4.7)
+ \begin{invoice}{\currencycode}{0}
+      \ProjectTitle{Prestations}
+      \Fee{Web Hosting {\footnotesize 1.10.2014 - 30.9.2015}} {145.95} {1}
+      \Fee{Domain Name xxxx.ch {\footnotesize 1.10.2014 - 30.9.2015}} {23.00} {1}
+    \end{invoice}
+\end{textblock}
+
+%Bottom Message Field  
+\begin{textblock}{12.6}(1.7,9.5)
+\raggedright
+Payable dans les 30 jours.\\
+\textit{Nous vous remercions pour votre confiance.}
+\end{textblock}
+
+\end{calibri}   
+
+%BVR Part with OCR Font
+\begin{ocr}
+
+%Payment for Field 1 
+\begin{textblock}{4.2}(0.3,10.8)
+\raggedright
+\wirereceiver\
+\end{textblock}
+
+%Payment for Field 2
+\begin{textblock}{4.2}(4.8,10.8)
+\raggedright
+\wirereceiver\
+\end{textblock}
+
+%In Favor of Field (Postal Field only)
+\begin{textblock}{4.2}(0.3,11.5)
+\raggedright
+\wirefor\
+\end{textblock}
+
+%In Favor of Field 2 (Postal Field only)
+\begin{textblock}{4.2}(4.8,11.5)
+\raggedright
+\wirefor\
+\end{textblock}
+
+%Account Number Field 1
+\begin{textblock}{2.2}(2.3,12.65)
+\raggedright
+\account\
+\end{textblock}
+
+%Account Number Field 2
+\begin{textblock}{2.2}(6.9,12.65)
+\raggedright
+\account\
+\end{textblock}
+
+% Amount CHF Field 1
+\begin{textblock}{2}(1.1,13.08)
+\raggedleft
+\francs\
+\end{textblock}
+
+% Amount CHF Field 2
+\begin{textblock}{2}(5.7,13.08)
+\raggedleft
+\francs\
+\end{textblock}
+
+% Amount in CTS of CHF Field 1
+\begin{textblock}{2}(3.9,13.08)
+\raggedright
+\cents\
+\end{textblock}
+
+% Amount in CTS of CHF Field 2
+\begin{textblock}{2}(8.5,13.08)
+\raggedright
+\cents\
+\end{textblock}
+
+% Payment From Field 1
+\begin{textblock}{4}(0.3,13.6)
+\raggedright
+\wirefrom\
+\end{textblock}
+
+% Payment From Field 2
+\begin{textblock}{4}(9.6,12.85)
+\raggedright
+\wirefrom\
+\end{textblock}
+
+% Reason / Communications Field
+\begin{textblock}{3.9}(9.5,10.8)
+\raggedright
+\communication\
+\end{textblock}
+
+% Reference Number Field
+\begin{textblock}{7}(9.5,12.16)
+\raggedright
+\refno\
+\end{textblock}
+
+% Bottom Code Field
+\begin{textblock}{11}(5.1,14.95)
+\raggedright
+\refcode\
+\end{textblock}
+
+\end{ocr}
+\end{document}
