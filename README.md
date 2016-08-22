@@ -6,7 +6,7 @@ With BVR-LaTeX you can create a swiss Orange or Red Inpayment slip also known as
   - Einzahlungsschein (DE)
   - Polizza di versamento (IT)
 
-You can choose between Bank or Post version
+You can choose between Bank or Post version and CHF or Euro currency.
 
 You must own a licence for use fonts included (OCR and Calibri).
 
@@ -16,4 +16,4 @@ You just have to edit the tex file and compile using this command :
 $ make
 ```
 ### Version
-1.0
+1.1
