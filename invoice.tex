@@ -12,7 +12,8 @@
 \usepackage[absolute]{textpos}
 \usepackage[T1]{fontenc}
 \usepackage[margin=1cm]{geometry}
-\usepackage[french]{./packages/invoice}
+%\usepackage[french]{./packages/invoice}
+\usepackage[english]{./packages/invoice}
 \usepackage{hyperref}
 \usepackage[ddmmyyyy]{datetime}
 \renewcommand{\dateseparator}{.}
@@ -52,8 +53,13 @@
 %Select here the background you want (Red BV or Orange BVR)
 %\ULCornerWallPaper{1}{templates/303_bank.pdf}
 %\ULCornerWallPaper{1}{templates/303_post.pdf}
+%\ULCornerWallPaper{1}{templates/609_bank.pdf}
 %\ULCornerWallPaper{1}{templates/609_post.pdf}
-\ULCornerWallPaper{1}{templates/609_bank.pdf}
+
+%\ULCornerWallPaper{1}{templates/407_bank.pdf}
+%\ULCornerWallPaper{1}{templates/407_post.pdf}
+\ULCornerWallPaper{1}{templates/701_bank.pdf}
+%\ULCornerWallPaper{1}{templates/701_post.pdf}
 
 %Put details about your invoice here
 \newcommand{\thedate}{\today}
@@ -63,7 +69,8 @@
 \newcommand\cents{95}
 \newcommand\clientid{MK-5646}
 \newcommand\invoiceid{23-14}
-\newcommand\currencycode{CHF}
+%\newcommand\currencycode{CHF}
+\newcommand\currencycode{EUR}
 \newcommand\wirereceiver{UBS AG\\8001 Zürich}
 \newcommand\wirefor{Mike Kruger\\Glennerstrasse 120\\6142 Gettnau}
 \newcommand\mycompanyname{Mike Kruger\\Glennerstrasse 120\\6142 Gettnau\\\href{mailto:mike.kruger@gmail.com}{mike.kruger@gmail.com}\\Tel : 079 456 78 90}
@@ -76,7 +83,7 @@
 
 \begin{document}
 \begin{calibri}
-{\huge Facture}
+{\huge Invoice}
 
 %From Field
 \begin{textblock}{12.6}(0.8,1.3)
@@ -94,11 +101,11 @@
 \begin{textblock}{4}(10,1.3)
 \raggedright
 {\small 
-Date :  \\
-Client : \\
-Facture : \\
-Montant : \\
-Payable jusqu'au :
+Invoice date :  \\
+Client ID : \\
+Invoice ID : \\
+Total Amount : \\
+Payment due date :
 }
 \end{textblock}
 
@@ -116,7 +123,7 @@ Payable jusqu'au :
 %Invoice Part
 \begin{textblock}{12.6}(1.7,4.7)
  \begin{invoice}{\currencycode}{0}
-      \ProjectTitle{Prestations}
+      \ProjectTitle{Items}
       \Fee{Web Hosting {\footnotesize 1.10.2014 - 30.9.2015}} {145.95} {1}
       \Fee{Domain Name xxxx.ch {\footnotesize 1.10.2014 - 30.9.2015}} {23.00} {1}
     \end{invoice}
@@ -125,8 +132,8 @@ Payable jusqu'au :
 %Bottom Message Field  
 \begin{textblock}{12.6}(1.7,9.5)
 \raggedright
-Payable dans les 30 jours.\\
-\textit{Nous vous remercions pour votre confiance.}
+Total payment due in 30 days\\
+\textit{Thank you for your business!}
 \end{textblock}
 
 \end{calibri}   
@@ -195,13 +202,13 @@ Payable dans les 30 jours.\\
 \end{textblock}
 
 % Payment From Field 1
-\begin{textblock}{4}(0.3,13.6)
+\begin{textblock}{4}(0.3,13.7)
 \raggedright
 \wirefrom\
 \end{textblock}
 
 % Payment From Field 2
-\begin{textblock}{4}(9.6,12.85)
+\begin{textblock}{4}(9.45,13.05)
 \raggedright
 \wirefrom\
 \end{textblock}
